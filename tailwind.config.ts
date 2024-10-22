@@ -8,12 +8,18 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      boxShadow: {
+        "normal-shadow": "-3px -3px 14px -8px #f6fbff, 3px 3px 9px -6px #000000",
+        "hover-shadow": "inset -1px -1px 6px -3px #f6fbff, inset 1px 1px 6px -3px #000000"
       },
-    },
+      colors: {
+        "dark-blue": "#043c5b",
+        "light-white": "#f6fbff",
+        "steel-blue": "#417c9c",
+        "hover-orange": "#c9591c",
+        "text-orange": "#c34d27"
+      }
+    }
   },
   plugins: [],
 };
