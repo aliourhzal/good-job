@@ -4,7 +4,7 @@ import ValueCard from "./ui/ValueCard";
 
 export default function About() {
   return (
-    <SectionWrapper className="h-screen">
+    <SectionWrapper className="">
       <LittleDescription>about</LittleDescription>
       <h2 className="text-dark-blue font-bold text-[32px] mb-8">
         Good Job is the platform connecting <br />

@@ -24,10 +24,4 @@ export class User {
 	@CreateDateColumn({ type: 'timestamp' })
 	created_at!: Date;
 
-	constructor(email: string, password: string, firstname: string, lastname: string) {
-		this.email = email;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.password = password;
-	}
 }

@@ -7,7 +7,7 @@ export class Job {
 	@PrimaryGeneratedColumn({type: 'bigint'})
 	id!: number;
 
-	@Column({unique: true, nullable: false, type: 'varchar'})
+	@Column({nullable: false, type: 'varchar'})
 	title!: string;
 
 	@Column({nullable: false, type: 'varchar'})
@@ -16,9 +16,13 @@ export class Job {
 	@Column({nullable: false, type: 'varchar'})
 	city!: string;
 
+	@Column({nullable: false, type: 'varchar'})
+	category!: string;
+
     @ManyToOne(() => User, (user) => user.jobs)
     user!: Relation<User>;
 
 	@CreateDateColumn({ type: 'timestamp' })
 	created_at!: Date;
+
 }

@@ -1,20 +1,38 @@
 import { FaMapMarkerAlt } from "react-icons/fa";
+import Ticket from "./Ticket";
+import { MouseEventHandler, useState } from "react";
+import axios from "axios";
+import Model from "./Model";
+import JobForm from "../JobForm";
+import { Job } from "@/app/dashboard/page";
 
-export default function JobCard() {
-    return (
-        <div className=" h-[310px] flex flex-col justify-evenly p-6 bg-white rounded-xl shadow-2xl ">
-            <div className="py-[2px] px-3 bg-hover-orange text-light-white text-sm font-light ml-auto rounded-full">
-                wood work
-            </div>
-            <h3 className="text-dark-blue text-xl font-semibold ">Lorem ipsum dolor</h3>
-            <p className="text-dark-blue text-sm font-light ">September 10, 2024</p>
-            <p className="text-dark-blue h-[72px] w-full line-clamp-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam exercitationem quasi nostrum earum, aperiam officia sed minus
-            </p>
-            <div className="flex items-center gap-1">
-                <FaMapMarkerAlt size={18} color="#1f2937" />
-                <span className="text-sm font-extralight">Casablanca</span>
-            </div>
-        </div>
-    );
+interface JobCardProps {
+  className?: string;
+  id: string;
+  title: string;
+  description: string;
+  city: string;
+  category: string;
+  created_at: string;
+}
+
+export default function JobCard({ className, ...job }: JobCardProps) {
+  return (
+    <div
+      className={`flex flex-col justify-evenly p-6 bg-white rounded-xl hover:shadow-2xl shadow-normal-shadow ${className}`}
+    >
+      <Ticket className="bg-hover-orange cursor-auto ml-auto">
+        {job.category}
+      </Ticket>
+      <h3 className="text-dark-blue text-xl font-semibold ">{job.title}</h3>
+      <p className="text-dark-blue text-sm font-light ">{job.created_at}</p>
+      <p className="text-dark-blue h-[72px] w-full line-clamp-3">
+        {job.description}
+      </p>
+      <div className="flex items-center gap-1">
+        <FaMapMarkerAlt size={18} color="#1f2937" />
+        <span className="text-sm font-extralight">{job.city}</span>
+      </div>
+    </div>
+  );
 }

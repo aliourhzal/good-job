@@ -10,7 +10,7 @@ export default function Navbar() {
             <Image src="/main-logo.png" height={56} width={76}  alt="logo" />
           </Link>
           <div className="flex gap-4 items-center">
-            <Link href="search-jobs" className="text-dark-blue font-semibold capitalize sm:block hidden">
+            <Link href="dashboard" className="text-dark-blue font-semibold capitalize sm:block hidden">
                 search jobs
             </Link>
             <Link href="login">

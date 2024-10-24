@@ -2,7 +2,7 @@ import { AppDataSource } from "../../../../ormconfig";
 import { User } from "@/db/entities/User";
 import { initializeDatabase } from "@/utils/db";
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
+import { z, ZodError } from "zod";
 import bcrypt from "bcryptjs";
 
 const schema = z.object({
@@ -41,20 +41,20 @@ export async function POST(req: NextRequest) {
     }
 
     const hashedPasswd = await bcrypt.hash(parsedData.password, 10);
-    const newUser = new User(
-      parsedData.email,
-      hashedPasswd,
-      parsedData.firstname,
-      parsedData.lastname
-    );
+    const newUser = new User();
+
+    newUser.email = parsedData.email;
+    newUser.password = hashedPasswd;
+    newUser.firstname = parsedData.firstname;
+    newUser.lastname = parsedData.lastname;
 
     await userRepo.save(newUser);
 
     return NextResponse.json(data);
   } catch (e) {
-    if (e.name === "ZodError")
+    if ((e as ZodError).name === "ZodError")
       return NextResponse.json(
-        { message: e.issues[0].message },
+        { message: (e as ZodError).issues[0].message },
         { status: 400 }
       );
     return NextResponse.json({ message: "unexpected error!" }, { status: 500 });
